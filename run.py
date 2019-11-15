@@ -2,10 +2,15 @@ import os
 import json
 from flask import Flask, render_template, request, flash
 
+# app (convention name) = instance of Flask class
+# __name__, the first argument of the Flask class, is the name of the aplications module or package
+# since we're just using a single module, we can use __name__ which is a built in Python variable
+# Flask needs this so it knows where to look for templates and static files
 app = Flask(__name__)
 app.secret_key = 'some_secret'
 
-
+# app.route decorator (decorator starts with @)
+# decorator is a way to wrap functions
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -45,7 +50,9 @@ def contact():
 def careers():
     return render_template("careers.html", page_title="Careers")
 
-if __name__ == '__main__':
-    app.run(host=os.environ.get('IP'),
-            port=int(os.environ.get('PORT')),
-            debug=True)
+#reference built in variable __name__
+# DON'T SUBMIT A PROJECT WITH DEBUG = TRUE
+# if __name__ == '__main__':
+#     app.run(host=os.environ.get('IP'),
+#             port=int(os.environ.get('PORT')),
+#             debug=True)
